@@ -37,8 +37,8 @@ export function parseArgv(argv: Argv): [Diff2HtmlConfig, Configuration] {
     colorScheme: argv.colorScheme,
   };
 
-  const defaultPageTitle = 'Diff to HTML by rtfpessoa';
-  const defaultPageHeader = 'Diff to HTML by <a href="https://github.com/rtfpessoa">rtfpessoa</a>';
+  const defaultPageTitle = '';
+  const defaultPageHeader = '';
   const defaultWrapperTemplate = resolve(__dirname, '..', 'template.html');
   const configuration: Configuration = {
     showFilesOpen: argv.summary === 'open' || false,
@@ -54,6 +54,7 @@ export function parseArgv(argv: Argv): [Diff2HtmlConfig, Configuration] {
     pageTitle: argv.title || defaultPageTitle,
     pageHeader: argv.title || defaultPageHeader,
     ignore: argv.ignore || [],
+    commitMessage: argv.commitMessage || '',
   };
 
   return [diff2htmlOptions, configuration];

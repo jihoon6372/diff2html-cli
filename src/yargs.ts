@@ -37,6 +37,7 @@ export type Argv = {
   ignore?: string[];
   extraArguments: string[];
   colorScheme: ColorSchemeType;
+  commitMessage?: string;
 };
 
 const defaults: Argv = {
@@ -62,6 +63,7 @@ const defaults: Argv = {
   title: undefined,
   extraArguments: [],
   colorScheme: ColorSchemeType.AUTO,
+  commitMessage: 'commit message sample',
 };
 
 type ArgvChoices = {
@@ -239,6 +241,12 @@ export async function setup(): Promise<Argv> {
       describe: 'ignore a file',
       type: 'array',
       default: defaults.ignore,
+    })
+    .option('commit-message', {
+      description: '커밋 메시지 입력',
+      nargs: 1,
+      type: 'string',
+      default: defaults.commitMessage,
     })
     .example(
       'diff2html -s line -f html -d word -i command -o preview -- -M HEAD~1',

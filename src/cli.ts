@@ -98,6 +98,8 @@ function prepareHTML(diffHTMLContent: string, config: Configuration, colorScheme
   const pageTitle = config.pageTitle;
   const pageHeader = config.pageHeader;
 
+  const commitMessage = config.commitMessage;
+
   const gitHubTheme =
     colorScheme === 'light' ? lightGitHubTheme : colorScheme === 'dark' ? darkGitHubTheme : autoGitHubTheme;
 
@@ -132,6 +134,7 @@ function prepareHTML(diffHTMLContent: string, config: Configuration, colorScheme
     },
     { searchValue: '<!--diff2html-header-->', replaceValue: pageHeader },
     { searchValue: '<!--diff2html-diff-->', replaceValue: diffHTMLContent },
+    { searchValue: '<!--diff2html-commit-message-->', replaceValue: commitMessage },
   ].reduce(
     (previousValue, replacement) =>
       utils.replaceExactly(previousValue, replacement.searchValue, replacement.replaceValue),
@@ -163,7 +166,6 @@ export function getOutput(options: Diff2HtmlConfig, config: Configuration, input
     process.exitCode = 4;
     throw new Error(`Template ('${config.htmlWrapperTemplate}') not found!`);
   }
-
   const diffJson = parse(input, options);
 
   switch (config.formatType) {

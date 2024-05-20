@@ -21,4 +21,5 @@ export type Configuration = {
   pageTitle: string;
   pageHeader: string;
   ignore: string[];
+  commitMessage: string;
 };
